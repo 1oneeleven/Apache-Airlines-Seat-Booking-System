@@ -1,7 +1,6 @@
 # The following code is the Apache airlines seat booking system for FC723 Project assessment 5
 
 print ("Apache Airlines")
-
 print ("")
 
 #create a class for the apache airplane booking system 
@@ -28,10 +27,10 @@ class ApacheAirlines:
                 f"B-{row_num}A", f"B-{row_num}B", f"B-{row_num}C", "|X| ", f"B-{row_num}D", f"B-{row_num}E", f"B-{row_num}F"
                 ])
 
-#Adding the special last 5 rows 76 to 80 to include storage for the Burak 757 airplane
-        self.seat_map.append(["F-76A", "F-76B", "F-76C", "|X| ", "  S  ", "  S  ", "  S  " ])
-        self.seat_map.append(["F-77A", "F-77B", "F-77C", "|X| ", "  S  ", "  S  ", "  S  " ])
-        self.seat_map.append(["F-78A", "F-78B", "F-78C", "|X| ", "  S  ", "  S  ", "  S  " ])
+        #Adding the special last 5 rows 76 to 80 to include storage for the Burak 757 airplane
+        self.seat_map.append(["F-76A", "F-76B", "F-76C", "|X| ", "  S  ", "  S  ", "  S  "])
+        self.seat_map.append(["F-77A", "F-77B", "F-77C", "|X| ", "  S  ", "  S  ", "  S  "])
+        self.seat_map.append(["F-78A", "F-78B", "F-78C", "|X| ", "  S  ", "  S  ", "  S  "])
         self.seat_map.append(["F-79A", "F-79B", "F-79C", "|X| ", "F-79D", "F-79E", "F-79F"])
         self.seat_map.append(["F-80A", "F-80B", "F-80C", "|X| ", "F-80D", "F-80E", "F-80F"])
     
@@ -44,12 +43,13 @@ def display_seats(seats):
 
 #check if the seat is available
 def check_availability(seats, row, col):
-    return not seats[row][col].strip() in ["R", " |X| ", "S", "S", "S"]
+    seat = seats[row][col].strip()
+    return seat != "R" and seat != "|X|" and seat != "S"
 
 #function to book seats
 def book_seat(seats, row, col):
     if check_availability(seats, row, col):          
-        seats[row][col] = "  F  "                               #checks whether the seat is Reserved "R"
+        seats[row][col] = "R"                               #checks whether the seat is Reserved "R"
         print("Seat booked successfully!")                  
     else:
         print("Seat is already booked or unavailable.")     #displays error if seat is Reserved "R"
