@@ -10,25 +10,29 @@ class ApacheAirlines:
     def __init__(self):                         #Set seat map for the Burak 757 airplane
         self.seat_map = [
     
-            ["1A ", " 1B", " 1C", "|X|", "1D", " 1E", "1F"],
-            ["2A ", " 2B", " 2C", "|X|", "2D", " 2E", "2F"],
-            ["3A ", " 3B", " 3C", "|X|", "3D", " 3E", "3F"],
-            ["4A ", " 4B", " 4C", "|X|", "4D", " 4E", "4F"],
-            ["5A ", " 5B", " 5C", "|X|", "5D", " 5E", "5F"],
-            
+                            [" 1A  ", " 1B ", "  1C ", " |X| ", "  1D  ", " 1E ", "  1F "],
+                            [" 2A  ", " 2B ", "  2C ", " |X| ", "  2D  ", " 2E ", "  2F "],
+                            [" 3A  ", " 3B ", "  3C ", " |X| ", "  3D  ", " 3E ", "  3F "],
+                            [" 4A  ", " 4B ", "  4C ", " |X| ", "  4D  ", " 4E ", "  4F "],
+                            [" 5A  ", " 5B ", "  5C ", " |X| ", "  5D  ", " 5E ", "  5F "],
+                            
             ]
         
-        for row_num in range(10, 75):                    #Fill in remaining rows between row 10 to row 75
+        for row_num in range(10, 70):                    #Fill in remaining rows between row 10 to row 75
             self.seat_map.append([
-                f"{row_num}A", f"{row_num}B", f"{row_num}C", "|X| ", f"{row_num}D", f"{row_num}E", f"{row_num}F"
+                f" {row_num}A ", f" {row_num}B ", f" {row_num}C ", "|X| ", f" {row_num}D", f"  {row_num}E ", f" {row_num}F"
+                ])
+        for row_num in range(71, 75):                    #Fill in remaining rows between row 10 to row 75
+            self.seat_map.append([
+                f"B-{row_num}A", f"B-{row_num}B", f"B-{row_num}C", "|X| ", f"B-{row_num}D", f"B-{row_num}E", f"B-{row_num}F"
                 ])
 
 #Adding the special last 5 rows 76 to 80 to include storage for the Burak 757 airplane
-        self.seat_map.append(["76A", "76B", "76C", "|X| ", " S ", " S ", " S " ])
-        self.seat_map.append(["77A", "77B", "77C", "|X| ", " S ", " S ", " S " ])
-        self.seat_map.append(["78A", "78B", "78C", "|X| ", " S ", " S ", " S " ])
-        self.seat_map.append(["79A", "79B", "79C", "|X| ", "79D", "79E", "79F"])
-        self.seat_map.append(["80A", "80B", "80C", "|X| ", "80D", "80E", "80F"])
+        self.seat_map.append(["F-76A", "F-76B", "F-76C", "|X| ", "  S  ", "  S  ", "  S  " ])
+        self.seat_map.append(["F-77A", "F-77B", "F-77C", "|X| ", "  S  ", "  S  ", "  S  " ])
+        self.seat_map.append(["F-78A", "F-78B", "F-78C", "|X| ", "  S  ", "  S  ", "  S  " ])
+        self.seat_map.append(["F-79A", "F-79B", "F-79C", "|X| ", "F-79D", "F-79E", "F-79F"])
+        self.seat_map.append(["F-80A", "F-80B", "F-80C", "|X| ", "F-80D", "F-80E", "F-80F"])
     
 #_______________________________functions_______________________________
 
@@ -84,7 +88,7 @@ def main():
         
         #if statement to check seat availability after calling check_availability function
         if choice == "1":
-            row, col = map (int, input("Enter row and column (e.g., 0 1): ").split())
+            row, col = map (int, input('Enter row and column - please note that seats starting with "F -" are first clas seats and "B -.." are business class seats (e.g., 0 1): ').split())
             if check_availability(seats, row, col):
                 print ("Seat is available.")
             else:
